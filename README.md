@@ -1,69 +1,69 @@
 # Cadencier
 
-Mod de liaison entre **Courseplay** et **AutoDrive** pour Farming Simulator 25 : il enchaîne automatiquement les travaux de champ (broyage, semis, herbicide, engrais, plombage, etc.) en orchestrant les véhicules et les outils de la ferme.
+A bridge mod between **Courseplay** and **AutoDrive** for Farming Simulator 25: it automatically chains field work (mulching, grass seeding, herbicide, fertilizer, rolling, etc.) by orchestrating the farm's vehicles and implements.
 
-Courseplay sait exécuter une course de travail sur un champ, AutoDrive sait faire circuler un véhicule d'un point à un autre — mais aucun des deux ne sait enchaîner plusieurs courses sur un même champ, ni arbitrer entre plusieurs champs qui se disputent les mêmes véhicules et outils. Cadencier ajoute cette couche d'orchestration au-dessus des deux, sans les remplacer.
+Courseplay knows how to run a single work course on a field, and AutoDrive knows how to drive a vehicle from one point to another — but neither knows how to chain several different courses on the same field, or arbitrate between several fields competing for the same vehicles and implements. Cadencier adds that orchestration layer on top of both, without replacing either.
 
-## Fonctionnalités
+## Features
 
-- Gestion simultanée de **tous les champs possédés par le joueur**, chacun avec sa propre séquence de courses et son propre ordre de priorité.
-- Séquences de courses **configurables et réordonnables**, enchaînement automatique dès qu'une course se termine.
-- **Sélection automatique du véhicule** pour chaque course, selon sa puissance, sa disponibilité, sa proximité de l'outil et son état d'usure.
-- **Pool d'outils partagé** entre tous les champs : chaque outil retourne automatiquement à un point de stockage dédié après usage, attelage/dételage entièrement automatisés.
-- **HUD dédié** : configuration des séquences et cadre de supervision listant les champs en attente ou en erreur.
-- Résolution automatique des incidents courants (ex. ravitaillement en carburant) quand c'est possible, sinon mise en pause du champ concerné avec motif affiché.
-- Compatible avec **toutes les cartes** (aucune configuration de ferme codée en dur).
+- Simultaneous management of **every field owned by the player**, each with its own course sequence and its own priority order.
+- **Configurable, reorderable** course sequences, with automatic hand-off to the next course as soon as one finishes.
+- **Automatic vehicle selection** for each course, based on power, availability, proximity to the implement, and wear/damage state.
+- **Shared implement pool** across all fields: each implement automatically returns to a dedicated storage point after use, with fully automated hitching/unhitching.
+- **Dedicated HUD**: a configuration screen for the sequences and a supervision panel listing fields that are waiting or in error.
+- Automatic resolution of common incidents (e.g. refueling) when possible, otherwise the affected field is paused with the reason displayed.
+- Compatible with **any map** (no hard-coded farm configuration).
 
-## Prérequis
+## Requirements
 
 - Farming Simulator 25
 - [Courseplay_FS25](https://github.com/Courseplay/Courseplay_FS25)
 - [FS25_AutoDrive](https://github.com/Stephan-S/FS25_AutoDrive)
 
-Cadencier ne génère pas de trajets : il orchestre des courses Courseplay et des trajets AutoDrive déjà enregistrés par le joueur.
+Cadencier does not generate routes itself: it orchestrates Courseplay courses and AutoDrive routes that the player has already recorded.
 
 ## Installation
 
-*(à compléter une fois le mod packagé — procédure standard FS25 : copier le `.zip` dans le dossier `mods` du jeu, activer les trois mods dans le menu des mods)*
+*(to be completed once the mod is packaged — standard FS25 procedure: copy the `.zip` into the game's `mods` folder, then enable all three mods from the in-game mod menu)*
 
-## Utilisation rapide
+## Quick start
 
-1. Enregistrer les courses souhaitées dans Courseplay et les trajets dans AutoDrive, comme d'habitude.
-2. Définir un point de stockage pour chaque outil de la ferme.
-3. Dans l'onglet Cadencier, construire la séquence de courses de chaque champ (outil + course associée) et fixer l'ordre de priorité entre champs.
-4. Laisser tourner : Cadencier attelle, exécute, dételle et range automatiquement.
+1. Record the desired courses in Courseplay and the routes in AutoDrive, as usual.
+2. Set a storage point for each implement on the farm.
+3. In the Cadencier tab, build each field's course sequence (implement + associated course) and set the priority order between fields.
+4. Let it run: Cadencier hitches, executes, unhitches, and stores everything automatically.
 
 ## Architecture
 
-- **Orchestrateur** — état et séquence de chaque champ.
-- **Moteur de sélection véhicule** — algorithme puissance/distance/usure.
-- **Gestionnaire de pool d'outils** — verrouillage, points de stockage.
-- **Adaptateurs Courseplay / AutoDrive** — seule couche qui appelle directement les API des deux mods.
-- **Module de supervision** — détection d'incidents, alimentation du HUD.
+- **Orchestrator** — state and sequence for each field.
+- **Vehicle selection engine** — power/distance/wear algorithm.
+- **Implement pool manager** — locking, storage points.
+- **Courseplay / AutoDrive adapters** — the only layer that calls either mod's API directly.
+- **Supervision module** — incident detection, feeds the HUD.
 
-Le détail complet des spécifications (algorithmes, cas d'erreur, plan de tests) est dans le cahier des charges du projet.
+The full specification (algorithms, error cases, test plan) lives in the project's design document.
 
-## Limites connues (V1)
+## Known limitations (V1)
 
-- Usage **solo uniquement** — pas de synchronisation multijoueur pour l'instant.
-- Pas de génération de trajet : les courses/trajets doivent déjà exister dans Courseplay/AutoDrive.
-- Dépend des API de Courseplay_FS25 et FS25_AutoDrive, tous deux en développement actif (bêta).
+- **Single-player only** — no multiplayer sync for now.
+- No route generation: courses/routes must already exist in Courseplay/AutoDrive.
+- Depends on the Courseplay_FS25 and FS25_AutoDrive APIs, both of which are under active (beta) development.
 
-## Feuille de route
+## Roadmap
 
-- Support multijoueur
-- Génération automatique de trajets
-- Gestion avancée de la maintenance préventive
+- Multiplayer support
+- Automatic route generation
+- Advanced preventive maintenance management
 
-## Contribuer
+## Contributing
 
-Les issues et pull requests sont les bienvenues. Merci de vérifier la licence de Courseplay_FS25 et FS25_AutoDrive avant toute reprise de code depuis ces projets.
+Issues and pull requests are welcome. Please check the license of Courseplay_FS25 and FS25_AutoDrive before reusing any code from those projects.
 
-## Licence
+## License
 
-À définir.
+To be determined.
 
-## Remerciements
+## Acknowledgements
 
-- L'équipe [Courseplay](https://github.com/Courseplay/Courseplay_FS25)
-- [Stephan-S](https://github.com/Stephan-S/FS25_AutoDrive) pour AutoDrive
+- The [Courseplay](https://github.com/Courseplay/Courseplay_FS25) team
+- [Stephan-S](https://github.com/Stephan-S/FS25_AutoDrive) for AutoDrive
